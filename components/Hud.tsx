@@ -5,6 +5,7 @@ import { scrollToId } from "@/lib/stage";
 import { Icon } from "./Icon";
 import { openStay } from "./ChillRoom";
 import { imageAsset } from "@/lib/image-assets";
+import { GitHubStars } from "./GitHubStars";
 
 const NAV = [
   { id: "me", label: "About" },
@@ -40,9 +41,9 @@ export function Hud() {
           </a>
         ))}
       </nav>
-      <button type="button" className="btn btn-small btn-accent" onClick={openStay}>
+      <div className="hud-actions"><GitHubStars /><button type="button" className="btn btn-small btn-accent" onClick={openStay}>
         <Icon name="cup" size={14} /> Stay a while
-      </button>
+      </button></div>
     </header>
   );
 }
