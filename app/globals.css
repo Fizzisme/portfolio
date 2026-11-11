@@ -408,6 +408,13 @@ html.is-staying {
 .hud-nav a:hover {
   color: var(--red);
 }
+.hud-actions { display: flex; align-items: center; gap: clamp(8px, 1vw, 16px); }
+.github-stars-link, .github-stars-inner { display: inline-flex; align-items: center; gap: 6px; }
+.github-stars-link { min-height: 38px; padding: 5px 9px; border: 1.5px solid var(--ink); color: var(--ink); font: 800 13px/1 var(--mono); text-decoration: none; }
+.github-stars-link:hover { background: var(--yellow); }
+.github-stars-logo { width: 19px; height: 19px; }
+.github-stars-star { width: 16px; height: 16px; }
+@media (max-width: 380px) { .hud { gap: 8px; } .github-stars-link { padding-inline: 6px; gap: 4px; } .hud-actions { gap: 7px; } }
 
 /* ─── Hero: one full-width poster ─── */
 .hero {
