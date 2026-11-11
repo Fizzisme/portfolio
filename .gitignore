@@ -1,0 +1,11 @@
+node_modules
+.claude/
+.impeccable/
+.next
+out
+*.log
+.env*
+*.tsbuildinfo
+next-env.d.ts
+.impeccable/config.local.json
+.impeccable/review
