@@ -135,7 +135,10 @@ export const projects: Project[] = [
     color: "#7fd1b9",
     video: { src: "/projects/marginalleya-demo.mp4" },
     repo: { owner: "23521155", name: "cloud-e-commerce", branch: "develop" },
-    links: [{ label: "GitHub", href: "https://github.com/23521155/cloud-e-commerce" }],
+    links: [
+      { label: "Website", href: "https://demo.marginalleya.me/" },
+      { label: "GitHub", href: "https://github.com/23521155/cloud-e-commerce" }
+    ],
   },
   {
     title: "Finsights",
