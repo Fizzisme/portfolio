@@ -1112,6 +1112,9 @@ html.is-staying {
   width: auto;
   max-width: min(100%, 640px);
   height: 0;
+  /* fixed ratio: the 1x1 placeholder RoomImage shows before loading would make the box square,
+     and the flyer (sized from this box) would then land smaller than the real letter */
+  aspect-ratio: 1774 / 887;
   object-fit: contain;
   object-position: left center;
   align-self: flex-start;
@@ -1167,6 +1170,66 @@ a.row-hit {
 
 a.row-hit:hover {
   background: rgba(21, 21, 21, 0.06);
+}
+
+.resume-toggle {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.resume-toggle:hover,
+.resume-toggle[aria-expanded="true"] {
+  background: rgba(21, 21, 21, 0.06);
+}
+
+.resume-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 5;
+  min-width: min(260px, 100%);
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--bone);
+  border: var(--rule);
+  box-shadow: var(--hard-sm);
+}
+
+.resume-menu a,
+.resume-soon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  font: 700 clamp(12px, 1.7vh, 15px) / 1.2 var(--f);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.resume-menu a:hover {
+  background: var(--yellow);
+}
+
+.resume-soon {
+  color: var(--ink-faint);
+  cursor: default;
+}
+
+.resume-soon em {
+  font: 700 10px / 1 var(--mono);
+  font-style: normal;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .row-soon {

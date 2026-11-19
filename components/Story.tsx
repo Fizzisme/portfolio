@@ -57,6 +57,62 @@ function LinkOrSoon({ href, label, icon }: { href: string; label: string; icon?:
   );
 }
 
+/** The Résumé row: opens a small picker of résumé versions; "#" ones show as coming soon. */
+function ResumeMenu() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: PointerEvent) => {
+      if (!ref.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <div className="row-hit resume-hit" ref={ref}>
+      <button
+        type="button"
+        className="resume-toggle"
+        aria-label="Résumé, choose a version"
+        aria-expanded={open}
+        aria-controls="resume-menu"
+        onClick={() => setOpen((o) => !o)}
+      >
+        <Icon name="out" size={26} />
+      </button>
+      {open && (
+        <ul id="resume-menu" className="resume-menu">
+          {contact.resumes.map((r) => (
+            <li key={r.label}>
+              {r.href !== "#" ? (
+                <a href={r.href} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
+                  <span>{r.label}</span>
+                  <Icon name="out" size={16} />
+                </a>
+              ) : (
+                <span className="resume-soon" aria-disabled="true">
+                  <span>{r.label}</span>
+                  <em>Coming soon</em>
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 function RoomHead({ n, kicker, id, children }: { n: number; kicker: string; id: string; children: React.ReactNode }) {
   return (
     <header className="room-head" data-reveal>
@@ -876,6 +932,13 @@ export function Story() {
           {/* the picture carries the names; these sit on its rows to say what each one does */}
           <ul className="contact-rows">
             {[{ label: "Email", href: contact.email ? `mailto:${contact.email}` : "" }, ...contact.links].map((l, i) => {
+              if ("icon" in l && l.icon === "doc") {
+                return (
+                  <li key={l.label} className={`contact-row row-${i}`}>
+                    <ResumeMenu />
+                  </li>
+                );
+              }
               const live = !!l.href && l.href !== "#";
               const external = live && l.href.startsWith("http");
               const inner = live ? (

@@ -135,7 +135,10 @@ export const projects: Project[] = [
     color: "#7fd1b9",
     video: { src: "/projects/marginalleya-demo.mp4" },
     repo: { owner: "23521155", name: "cloud-e-commerce", branch: "develop" },
-    links: [{ label: "GitHub", href: "https://github.com/23521155/cloud-e-commerce" }],
+    links: [
+      { label: "Website", href: "https://demo.marginalleya.me/" },
+      { label: "GitHub", href: "https://github.com/23521155/cloud-e-commerce" }
+    ],
   },
   {
     title: "Finsights",
@@ -200,10 +203,16 @@ export const certificates: Certificate[] = [
  * TODO(Fizz): add your email (null hides it) and real links.
  */
 export const contact = {
-  email: null as string | null,
+  email: "nguyenletuanphi12c1.2022@gmail.com" as string | null,
   links: [
     { label: "GitHub", href: "https://github.com/Fizzisme", icon: "code" as const },
-    { label: "LinkedIn", href: "#", icon: "person" as const },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/phi-nguy%E1%BB%85n-7351ab3b5/", icon: "person" as const },
+    /** The "doc" row opens a picker of `resumes` below instead of following href. */
     { label: "Résumé (PDF)", href: "#", icon: "doc" as const },
+  ],
+  /** Résumé versions offered by the Résumé row. "#" renders as coming soon. */
+  resumes: [
+    { label: "Software Engineer", href: "/resume/nguyen-le-tuan-phi-software-engineer.pdf" },
+    { label: "AI Engineer", href: "#" },
   ],
 };
