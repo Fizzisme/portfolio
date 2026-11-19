@@ -1112,6 +1112,9 @@ html.is-staying {
   width: auto;
   max-width: min(100%, 640px);
   height: 0;
+  /* fixed ratio: the 1x1 placeholder RoomImage shows before loading would make the box square,
+     and the flyer (sized from this box) would then land smaller than the real letter */
+  aspect-ratio: 1774 / 887;
   object-fit: contain;
   object-position: left center;
   align-self: flex-start;
